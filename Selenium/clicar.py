@@ -6,7 +6,7 @@ from time import sleep
 def iniciar_driver():
 
     chrome_options = Options()
-    arguments = ['--lang=pt-BR', '--window-size=800,1000', '--incognito']
+    arguments = ['--lang=pt-BR', '--window-size=800,600', '--incognito']
     for argument in arguments:
         chrome_options.add_argument(argument)
 
@@ -20,7 +20,7 @@ def iniciar_driver():
     chrome_options = Options()
     # Fonte de opções de switches https://peter.sh/experiments/chromium-command-line-switches/
 
-    arguments = ['--lang=pt-BR', '--window-size=800,600',
+    arguments = ['--lang=pt-BR', '--window-size=800,1000',
                 '--incognito']
     ''' Common arguments
     --start-maximized # Inicia maximizado
@@ -53,3 +53,81 @@ def iniciar_driver():
 
 driver = iniciar_driver()
 driver.get('https://cursoautomacao.netlify.app/')
+sleep(5)
+
+# encontrar um elemento e depois interagir com ele
+botao_dropdown = driver.find_element(By.ID, 'dropdownMenuButton')
+# MÉTODO 1 PARA CLICK
+# botao_dropdown.click()
+# MÉTODO 2 PARA CLICK
+# driver.execute_script('arguments[0].click()', botao_dropdown)
+
+'''
+sleep(3)
+# encontrar o clicar no link de login
+botao_login = driver.find_element(By.LINK_TEXT, 'Login')
+sleep(1)
+botao_login.click()
+sleep(1)
+# encontrar e clicar no campo de email
+campo_email = driver.find_element(By.NAME, 'email')
+sleep(1)
+# digitar meu email
+campo_email.send_keys('jhonatan@hotmail.com')
+sleep(1)
+# encontrar e clicar no campo de senha
+campo_senha = driver.find_element(By.ID, 'senha')
+sleep(1)
+# digitar minha senha
+campo_senha.send_keys('1234567')
+sleep(1)
+# encontrar e clicar no botão enviar
+botao_login = driver.find_element(By.CLASS_NAME, 'btn.btn-primary')
+sleep(1)
+botao_login.click()
+'''
+botao_desafio = driver.find_element(By.LINK_TEXT,'Desafios')
+sleep(1)
+
+botao_desafio.click()
+sleep(1)
+
+nome = driver.find_element(By.ID,'dadosusuario')
+nome.click()
+sleep(1)
+
+nome.send_keys('Vinicius Dalla')
+sleep(1)
+
+clique_aqui = driver.find_element(By.ID,'desafio2')
+clique_aqui.click()
+
+escondido = driver.find_element(By.ID,'escondido')
+escondido.send_keys('Vinicius Dalla')
+sleep(1)
+validar = driver.find_element(By.ID,'validarDesafio2')
+validar.click()
+
+#RadioBox
+linux_radio_button = driver.find_element(By.ID, 'LinuxRadioButton')
+if linux_radio_button.is_selected() == True:
+    print('botão já está selecionado')
+sleep(1)
+linux_radio_button.click()
+sleep(5)
+radios = driver.find_elements(By.XPATH, "//input[@type='radio']")
+sleep(1)
+radios[1].click()
+
+#CheckBox
+driver.execute_script('window.scrollTo(0,500)')
+sleep(1)
+
+checkbox_conversivel = driver.find_element(By.ID, 'conversivelcheckbox')
+checkbox_offroad = driver.find_element(By.ID, 'offroadcheckbox')
+
+checkbox_conversivel.click()
+checkbox_offroad.click()
+
+input('')
+driver.close()

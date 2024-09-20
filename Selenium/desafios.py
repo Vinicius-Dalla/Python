@@ -6,7 +6,7 @@ from time import sleep
 def iniciar_driver():
 
     chrome_options = Options()
-    arguments = ['--lang=pt-BR', '--window-size=800,1000', '--incognito']
+    arguments = ['--lang=pt-BR', '--window-size=800,600', '--incognito']
     for argument in arguments:
         chrome_options.add_argument(argument)
 
@@ -52,4 +52,24 @@ def iniciar_driver():
     return driver
 
 driver = iniciar_driver()
-driver.get('https://cursoautomacao.netlify.app/')
+driver.get('https://cursoautomacao.netlify.app/desafios.html')
+
+botao1 = driver.find_element(By.ID, 'btn1')
+botao2 = driver.find_element(By.CLASS_NAME, 'btn2.btn.btn-dark')
+botao3 = driver.find_element(By.CLASS_NAME, 'btn2.btn.btn-warning')
+
+if botao1.is_enabled():
+    print('Habilitado')
+else:
+    print('Desabilitado')
+if botao2.is_enabled():
+    print('Habilitado')
+else:
+    print('Desabilitado')
+if botao3.is_enabled():
+    print('Habilitado')
+else:
+    print('Desabilitado')
+
+input()
+driver.close()

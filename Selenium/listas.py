@@ -6,7 +6,7 @@ from time import sleep
 def iniciar_driver():
 
     chrome_options = Options()
-    arguments = ['--lang=pt-BR', '--window-size=800,1000', '--incognito']
+    arguments = ['--lang=pt-BR', '--window-size=800,600', '--incognito']
     for argument in arguments:
         chrome_options.add_argument(argument)
 
@@ -52,4 +52,22 @@ def iniciar_driver():
     return driver
 
 driver = iniciar_driver()
-driver.get('https://cursoautomacao.netlify.app/')
+# navegar até o site
+driver.get('https://cursoautomacao.netlify.app/desafios.html')
+sleep(1)
+driver.execute_script("window.scrollTo(0, 1500);")
+sleep(1)
+# Desafio 1
+carros = driver.find_elements(By.XPATH, "//input[@name='carros']")
+carros[1].click()
+carros[3].click()
+carros[4].click()
+sleep(3)
+# Desafio 2
+motos = driver.find_elements(By.XPATH, "//input[@name='motos']")
+for moto in motos:
+    moto.click()
+sleep(3)
+
+input('')
+driver.close()  
